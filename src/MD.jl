@@ -72,7 +72,7 @@ function MaxwellBoltzmann_scale(at::Atoms, T::Float64)
         end
     end
 
-    M2 = M .* sqrt.(at.M .* T)
+    M2 = M .* sqrt.(at.M .* (T * kB))
     set_momenta!(at, transpose(M2))
 
     return at #, Ml, Mnm, Sl, M
