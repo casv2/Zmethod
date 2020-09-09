@@ -15,6 +15,10 @@ export Zmethod
 #     end
 # end
 
+kB = 8.617330337217213e-05 #units
+fs = 0.09822694788464063
+
+
 function Zmethod(IP::AbstractCalculator, at::Atoms, nsteps::Int, dt::Float64, A::Float64, N::Int, file::String; write=false)
     E0 = energy(IP, at)
 
