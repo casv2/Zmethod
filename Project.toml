@@ -1,0 +1,4 @@
+name = "Zmethod"
+uuid = "cc8286c8-f523-42d7-8adc-8a07b417e07a"
+authors = ["casv2 <casv2@cam.ac.uk>"]
+version = "0.1.0"
