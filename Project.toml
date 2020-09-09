@@ -4,5 +4,6 @@ authors = ["casv2 <casv2@cam.ac.uk>"]
 version = "0.1.0"
 
 [deps]
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 JuLIP = "945c410c-986d-556a-acb1-167a618e0462"
