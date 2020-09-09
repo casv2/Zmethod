@@ -3,7 +3,7 @@ module MD
 kB = 8.617330337217213e-05 #units
 fs = 0.09822694788464063
 
-using JuLIP, Distributions
+using JuLIP, Distributions, LinearAlgebra
 
 export Stationary, VelocityVerlet, Zmethod, MaxwellBoltzmann_scale
 
@@ -40,7 +40,7 @@ function VelocityVerlet(IP::AbstractCalculator, at::Atoms, dt::Float64)
     return at
 end
 
-function MaxwellBoltzmann_scale(at::Atoms, T::Float64)
+function MaxwellBoltzmann_scale(at::Atoms, T::Int)
     d = Normal()
     M = reshape(collect(rand(d, 3*length(at.M))), (length(at.M),3))
 
