@@ -20,7 +20,7 @@ export Zmethod
 kB = 8.617330337217213e-05 #units
 fs = 0.09822694788464063
 
-function Zmethod(IP::AbstractCalculator, at::Atoms, nsteps::Int, dt::Int, A::Float64, N::Int, file::String; write=false)
+function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
     E0 = energy(IP, at)
 
     m = at.M
@@ -33,7 +33,7 @@ function Zmethod(IP::AbstractCalculator, at::Atoms, nsteps::Int, dt::Int, A::Flo
 
     pyat_l = []
 
-    open(file, "w") do io
+    open(file, "a") do io
         for i in 1:nsteps
             at = VelocityVerlet(IP, at, dt * fs)
             Ek = ((0.5 * sum(at.M) * norm(at.P ./ at.M)^2)/length(at.M)) / length(at.M)
@@ -44,7 +44,7 @@ function Zmethod(IP::AbstractCalculator, at::Atoms, nsteps::Int, dt::Int, A::Flo
             T[i] = Ek / (1.5 * kB)
             P[i] = -tr(stress(IP, at))/3.0
             if i % 10 == 0
-                write(io, "$(Ep) $(Ek) $(T[i]) $(P[i])\n")
+                write(io, "$(Ep) $(Ek) $(T[i]) $(P[i]) \n")
             end
 
             v = at.P ./ m
@@ -55,12 +55,13 @@ function Zmethod(IP::AbstractCalculator, at::Atoms, nsteps::Int, dt::Int, A::Flo
             if i % 100 == 0
                 @show i, T[i], P[i]
                 pyat = ASE.ASEAtoms(at)
-                if write
+                if write_at
                     write_xyz("traj_$(i).xyz", pyat)
                 end
                 push!(pyat_l, pyat)
             end
         end
+        close(io)
     end
 
     return E_tot, E_pot, E_kin, P, T, pyat_l
