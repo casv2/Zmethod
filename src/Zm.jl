@@ -1,6 +1,7 @@
 module Zm
 
 using Distributed, ASE, IPFitting
+using Zmethod.MD: VelocityVerlet
 
 export Zmethod
 
