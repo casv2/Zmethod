@@ -1,5 +1,5 @@
 module Zmethod
 
-greet() = print("Hello World!")
+include("MD.jl")
 
 end # module
