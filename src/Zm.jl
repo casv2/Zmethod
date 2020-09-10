@@ -53,7 +53,7 @@ function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
             set_momenta!(at, (v + C*v) .* m)
 
             if i % 100 == 0
-                @show i, T[i], P[i]
+                flush(io)
                 pyat = ASE.ASEAtoms(at)
                 if write_at
                     write_xyz("traj_$(file)_$(i).xyz", pyat)
