@@ -56,7 +56,7 @@ function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
                 @show i, T[i], P[i]
                 pyat = ASE.ASEAtoms(at)
                 if write_at
-                    write_xyz("traj_$(i).xyz", pyat)
+                    write_xyz("traj_$(file)_$(i).xyz", pyat)
                 end
                 push!(pyat_l, pyat)
             end
