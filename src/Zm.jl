@@ -52,7 +52,7 @@ function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
 
             set_momenta!(at, (v + C*v) .* m)
 
-            if i % 100 == 0
+            if i % 1000 == 0
                 flush(io)
                 pyat = ASE.ASEAtoms(at)
                 if write_at
