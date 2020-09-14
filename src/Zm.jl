@@ -44,8 +44,7 @@ function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
             T[i] = Ek / (1.5 * kB)
             P[i] = -tr(stress(IP, at))/3.0
             if i % 10 == 0
-                Etot = Ek + Ep
-                write(io, "$(Ep) $(Ek) $(Etot) $(T[i]) $(P[i]) \n")
+                write(io, "$(Ep) $(Ek) $(Etot[i]) $(T[i]) $(P[i]) \n")
             end
 
             v = at.P ./ m
