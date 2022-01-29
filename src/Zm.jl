@@ -23,7 +23,7 @@ fs = 0.09822694788464063
 function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
     E0 = energy(IP, at)
 
-    m = at.M
+    #m = at.M
 
     E_tot = zeros(nsteps)
     E_pot = zeros(nsteps)
@@ -47,10 +47,14 @@ function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
                 write(io, "$(Ep) $(Ek) $(E_tot[i]) $(T[i]) $(P[i]) \n")
             end
 
-            v = at.P ./ m
-            C = A/norm(v)
+            # v = at.P ./ m
+            # C = A/norm(v)
+            #
+            # set_momenta!(at, (v + C*v) .* m)
 
-            set_momenta!(at, (v + C*v) .* m)
+            C = A/norm(at.P)
+
+            set_momenta!(at, (1+C)*at.P)
 
             if i % 1000 == 0
                 flush(io)
