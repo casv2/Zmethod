@@ -61,7 +61,6 @@ function Zmethod(IP, at, nsteps, dt, A, file; write_at=false)
             end
             
             if i % 1000 == 0
-                flush(io)
                 pyat = ASE.ASEAtoms(at)
                 if write_at
                     write_xyz("traj_$(file)_$(i).xyz", pyat)
