@@ -20,7 +20,7 @@ export Zmethod
 kB = 8.617330337217213e-05 #units
 fs = 0.09822694788464063
 
-function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
+function Zmethod(IP, at, nsteps, dt, A, file; write_at=false)
     E0 = energy(IP, at)
 
     #m = at.M
@@ -56,6 +56,10 @@ function Zmethod(IP, at, nsteps, dt, A, N, file; write_at=false)
 
             set_momenta!(at, (1+C)*at.P)
 
+            if i % 100 == 0 
+                flush(io)
+            end
+            
             if i % 1000 == 0
                 flush(io)
                 pyat = ASE.ASEAtoms(at)
