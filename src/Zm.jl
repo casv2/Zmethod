@@ -42,7 +42,7 @@ function Zmethod(IP, at, nsteps, dt, A, file; write_at=false)
             E_pot[i] = Ep
             E_kin[i] = Ek
             T[i] = Ek / (1.5 * kB)
-            P[i] = -tr(stress(IP, at))/3.0
+            P[i] = (-tr(stress(IP, at))/3.0) * 160.21766208
             if i % 10 == 0
                 write(io, "$(Ep) $(Ek) $(E_tot[i]) $(T[i]) $(P[i]) \n")
             end
